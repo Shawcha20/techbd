@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/Utils/Utils";
@@ -26,7 +27,7 @@ export default function Feature() {
   ];
   return (
     <motion.section
-      className="bg-white dark:bg-black "
+      className="bg-white dark:bg-black pb-12"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
