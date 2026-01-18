@@ -6,7 +6,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/Components/AuthProvider/AuthProvider";
-import Toast from "../Toast/Toast";
+import { showSuccess } from "@/Utils/Notificationi";
+
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuth();
@@ -21,7 +22,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-    Toast("Log out Successfull");
+    showSuccess("Log out Successfull");
     router.push("/login");
   };
 

@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { validateCredentials, setAuthCookie } from "@/lib/auth";
 import { useAuth } from "@/Components/AuthProvider/AuthProvider";
-import Toast from "@/Components/Toast/Toast";
+import { showSuccess } from "@/Utils/Notificationi";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuth(); // ✅ IMPORTANT
+  const { login } = useAuth(); 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,8 @@ export default function LoginPage() {
     if (validateCredentials(email, password)) {
       setAuthCookie(email); 
       login();  
-    //   Toast("Successfully logged in") ;         
+        
+    showSuccess("successfully logged in ");  
       router.push("/items");
     } else {
       setError(

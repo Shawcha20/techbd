@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/Components/ui/button";
 import { products } from "@/data/product";
+import { showConfirm, showSuccess, showWarning } from "@/Utils/Notificationi";
 import { motion } from "framer-motion";
 
 import Link from "next/link";
@@ -17,7 +18,6 @@ export default function ItemDetailPage() {
     notFound();
   }
 
-  // Find related products (same category, but not the current product)
   const relatedProducts = products.filter(
     (p) => p.category === product.category && p.id !== product.id
   ).slice(0, 3);
@@ -39,9 +39,32 @@ export default function ItemDetailPage() {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { opacity: 1, scale: 1 },
   };
+const handleCart = async () => {
+  const result = await showConfirm(
+    "Do you want to add this item to cart?",
+    "Add to Cart"
+  );
 
+  if (result.isConfirmed) {
+    // add to cart logic here
+    showSuccess("Item added successfully");
+  } else {
+    showWarning("Action cancelled");
+  }
+};
+
+const handleWishlist=async()=>{
+    const result= await showConfirm("Want to add in your wishlist?","add to wishlist");
+    if(result.isConfirmed)
+    {
+        showSuccess("Item added to wishlist");
+    }
+    else{
+        showWarning("Action cancelled");
+    }
+}
   return (
-    <div className="min-h-screen bg-white dark:bg-black py-12">
+    <div className="min-h-screen bg-white dark:bg-black py-12" >
       <motion.div
         className="max-w-7xl mx-auto px-4"
         variants={containerVariants}
@@ -134,7 +157,7 @@ export default function ItemDetailPage() {
                 whileTap={{ scale: 0.95 }}
                 className="flex-1 btn-primary py-3 font-semibold text-lg"
               >
-                <Button>
+                <Button onClick={()=>handleCart()}>
                 Add to Cart
                 </Button>
               </motion.button>
@@ -143,7 +166,7 @@ export default function ItemDetailPage() {
                 whileTap={{ scale: 0.95 }}
                 className="flex-1 btn-outline py-3 font-semibold text-lg"
               >
-                <Button>
+                <Button onClick={()=>handleWishlist()}>
                 Add to Wishlist
               </Button>
               </motion.button>
