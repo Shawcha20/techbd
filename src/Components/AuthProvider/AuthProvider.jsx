@@ -8,7 +8,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Read cookie once on app load
+
   useEffect(() => {
     setIsAuthenticated(getAuthCookie());
   }, []);

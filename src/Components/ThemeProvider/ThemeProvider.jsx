@@ -10,7 +10,7 @@ export default function ThemeProvider({ children }) {
       document.documentElement.classList.toggle("dark", media.matches);
     };
 
-    applyTheme(); // initial
+    applyTheme(); 
     media.addEventListener("change", applyTheme);
 
     return () => media.removeEventListener("change", applyTheme);

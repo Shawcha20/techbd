@@ -1,6 +1,6 @@
 // Mock authentication credentials
-const VALID_EMAIL = "mahamudulislamshawcha2007040@gamil.com";
-const VALID_PASSWORD = "12011034sP";
+const VALID_EMAIL = "demouser@example.com";
+const VALID_PASSWORD = "password123";
 
 export const validateCredentials = (email, password) => {
   return email === VALID_EMAIL && password === VALID_PASSWORD;
